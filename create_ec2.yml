@@ -1,0 +1,21 @@
+---
+- hosts : localhost
+  become : true
+  connection : local 
+  gather_facts : true
+  tags: provisioning 
+  tasks : 
+    - name : Launch Three EC2 instances 
+      ec2 :   
+          instance_type : t2.micro 
+          key_name : EC2Key
+          image : ami-0022f774911c1d690
+          region : us-east-1
+          group : default
+          count : 3
+          vpc_subnet_id : subnet-00a94213d8d16ea09
+          wait : yes
+          assign_public_ip : yes  
+
+      
+  
