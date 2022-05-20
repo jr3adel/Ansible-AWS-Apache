@@ -1,42 +1,21 @@
 ---
 - hosts : localhost
-  connection : local
+  become : true
+  connection : local 
   gather_facts : true
   tags: provisioning 
-  tasks :
-    - name : Create my security group 
-      ec2_group : 
-          name : instance_sec_group
-          description : Security Group For Three EC2 Instances 
-          region : us-east-1 
-          rules : 
-              - proto : tcp
-                from_port : 22 
-                to_port : 22 
-                cidr_ip : 0.0.0.0/0 
-              - proto : tcp 
-                from_port : 8080 
-                to_port : 8080
-                cidr_ip : 0.0.0.0/0
-              - proto : tcp 
-                from_port : 80 
-                to_port : 80 
-                cidr_ip : 0.0.0.0 /0
-          rules_egress : 
-              - proto : all 
-                cidr_ip : 0.0.0.0/0 
+  tasks : 
     - name : Launch Three EC2 instances 
       ec2 :   
-          group : instance_sec_group
           instance_type : t2.micro 
           key_name : EC2Key
           image : ami-0022f774911c1d690
           region : us-east-1
+          group : default
           count : 3
           vpc_subnet_id : subnet-00a94213d8d16ea09
           wait : yes
           assign_public_ip : yes  
-      
 
       
   
