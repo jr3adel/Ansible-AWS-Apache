@@ -1,6 +1,5 @@
 ---
 - hosts : webserver
-  become : true 
   tags : apache , apache2 ,httpd
   tasks :
     - name : Check Python 3 

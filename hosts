@@ -6,5 +6,6 @@ ec2-user@ec2-35-153-180-158.compute-1.amazonaws.com ansible_ssh_private_key_file
 ec2-user@ec2-54-144-57-95.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/workstation   ansible_python_interpreter=python
 ec2-user@ec2-52-90-142-144.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/workstation  ansible_python_interpreter=python
 
+# These IPs depend on your own E2 servers 
 
 

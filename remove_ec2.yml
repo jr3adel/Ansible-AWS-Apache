@@ -1,0 +1,19 @@
+- name: Terminate EC2 instances
+  hosts: localhost
+  connection : local
+  gather_facts: true
+  vars:
+    instance_ids:
+      - 'i-0a0ddad47d44ec94c'  # IDs of your ec2 instances 
+      - 'i-08049a20ce6ecdc18'
+      - 'i-0fac0350e53b5c771'
+    region: us-east-1
+  tasks:
+    - name: terminate the ec2 instances
+      amazon.aws.ec2:
+        instance_ids: '{{ instance_ids }}'
+        region: '{{ region }}'
+        state: absent
+        wait: True
+        vpc_subnet_id: subnet-00a94213d8d16ea09
+        assign_public_ip: yes
